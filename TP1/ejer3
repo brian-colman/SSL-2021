@@ -1,0 +1,116 @@
+#!/bin/bash 
+
+# Variables 
+# Se usan con letras mayusculas 
+# La igualdad siempre va pegado a la variable 
+
+MENSAJE="Hola Mundo"
+echo $MENSAJE
+
+MENSAJE="\"Hola Mundo ...\""
+echo "El valor de la variable \$MENSAJE es $MENSAJE"
+
+# Variables numericas 
+
+let A=100 
+echo "A: $A"
+
+
+#-----------------------------------------
+
+# Sentencias Condicionales 
+# con $1 se piden parametros en consola ./nombre param
+
+# -eq equal (igual)  
+# -ne not equal (distinto) 
+# -gt greater than (mas grande que) 
+# -ge greater or equal (>=)
+# -lt less than (<)
+# -le less or equal (<=)
+
+if [[ $1 -eq 1 ]]; then
+  echo "1 was passed in the first parameter"
+elif [[ $1 -gt 2 ]]; then
+  echo "2 was not passed in the first parameter"
+else
+  echo "The first parameter was not 1 and is not more than 2."
+fi
+
+
+#-----------------------------------------
+# Bucles for 
+# Muestra todos los elementos uno por uno con el comando ls 
+
+for i in $(ls); do
+    echo $i
+  done
+
+# Como C 
+
+for ((i = 0 ; i < 100 ; i++)); do
+    echo $i
+  done
+
+# Con rangos 
+
+for i in {1..5};do
+      echo "hola jugador $i"
+    done  
+
+
+#-----------------------------------------
+# While 
+# Estructura 
+# while [condition];do
+#    commands
+#  done
+
+
+number=10
+
+while [ $number -gt 5 ];do
+
+      echo $number
+          number=$(($number-1))
+
+        done
+#-----------------------------------------
+# Funciones 
+
+# [function]NombreFunción () 
+# {Bloque   ...   [ return [Valor] ]   ...   }
+
+
+myfunc() {
+    echo "Using functions"
+
+  }
+
+myfunc
+
+# Con return 
+
+myfunc2() {
+
+    read -p "Enter a value: " value
+
+      echo "adding value"
+
+        return $(($value + 10))
+
+      }
+    
+myfunc2
+echo "The new value is $?"
+
+myfunc3() {
+
+    read -p "Enter a value: " value
+
+      echo $(($value + 10))
+
+    }
+
+result=$(myfunc3)
+
+echo "The value is $result"
